@@ -148,7 +148,6 @@ describe('discriminators', function() {
       .attr('grade', 'number')
       .type('student');
     
-    console.log('user', User);
     var doc = new User({userType: 'teacher'});
     
     expect(doc.get('username')).to.equal('');
@@ -166,7 +165,7 @@ describe('discriminators', function() {
     expect(doc.get('grade')).to.equal(0);
   });
   
-  it.only('should work on nested documents', function() {
+  it('should work on nested documents', function() {
     var Share = model
       .attr('object', 'object');
     
