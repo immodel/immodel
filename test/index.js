@@ -249,4 +249,33 @@ describe('arrays', function() {
       done();
     });
   });
+  
+  it('should work with discriminators', function() {
+    var Share = model
+      .attr('attachments', array('object'));
+      
+    var Obj = model
+      .attr('objectType', 'string')
+      .discriminator('objectType', ['question', 'video'])
+      .type('object');
+    
+    Obj
+      .attr('questionText', 'string')
+      .type('question');
+    
+    Obj
+      .attr('url', 'string')
+      .type('video');
+    
+    var share = new Share();
+    share.get('attachments').push({objectType: 'question'});
+    
+    expect(share.get('attachments.0.questionText')).to.equal('');
+    expect(share.get('attachments.0.url')).to.equal(undefined);
+    
+    share.get('attachments').push({objectType: 'video'});
+   
+   expect(share.get('attachments.1.questionText')).to.equal(undefined);
+   expect(share.get('attachments.1.url')).to.equal(''); 
+  });
 });
