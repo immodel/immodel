@@ -1,6 +1,6 @@
 var chai = require('chai');
 var expect = chai.expect;
-var model = require('../');
+var model = require('../').model;
 
 require('debug-trace')({always: true});
 
@@ -189,7 +189,7 @@ describe('discriminators', function() {
 });
 
 describe('arrays', function() {
-  var array = require('../lib/types/array');
+  var array = model.lookup('array');
   
   it('should work', function() {
     var User = model

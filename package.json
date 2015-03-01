@@ -1,17 +1,25 @@
 {
-  "name": "models",
-  "version": "0.0.0",
-  "description": "",
+  "name": "immodel",
+  "version": "0.1.0",
+  "description": "Simple, extendable models with support for arbitrary nesting and inheritance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ashaffer (http://github.com/ashaffer)",
+  "license": "MIT",
   "dependencies": {
-    "ware": "^1.2.0",
     "lodash": "^3.1.0",
-    "component-emitter": "^1.2.0"
+    "component-emitter": "^1.2.0",
+    "attrs": "git://github.com/immodel/attrs",
+    "validation": "git://github.com/immodel/validation",
+    "defaults": "git://github.com/immodel/defaults",
+    "getter-setter": "git://github.com/immodel/getter-setter",
+    "methods": "git://github.com/immodel/methods",
+    "discriminators": "git://github.com/immodel/discriminators",
+    "required": "git://github.com/immodel/required",
+    "cast": "git://github.com/immodel/cast",
+    "types": "git://github.com/immodel/types"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
@@ -19,5 +27,19 @@
     "sinon": "^1.12.2",
     "sinon-chai": "^2.6.0",
     "debug-trace": "^0.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/immodel/types"
+  },
+  "keywords": [
+    "immodel",
+    "models",
+    "model",
+    "immutable"
+  ],
+  "bugs": {
+    "url": "https://github.com/immodel/immodel/issues"
+  },
+  "homepage": "https://github.com/immodel/immodel"
 }
