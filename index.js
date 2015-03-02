@@ -1,53 +1,20 @@
-var model = require('./lib/model');
-
-// Offer access to the native model so people can use their own
-// versions of the plugins with it if they choose
-exports.raw = model;
-  
-// Provide a bootstrapped model that has all the major features
-// out of the box
-exports.model = model
-  .use(require('getter-setter'))
-  .use(require('cast'))
-  .use(require('methods'))
-  .use(require('attrs'))
-  .use(require('validation'))
-  .use(require('required'))
-  .use(require('defaults'))
-  .use(require('discriminators'));
-  
-
-// These can be overriden by simply calling .type() on model
-// again, so its ok to add them globally
-require('types')(exports.model);
-
-
-// This exists primarily for tests to easily swap out
-// a module with their local copy.  This code is not
-// compatible with browserify, so it is not recommended
-// to be used unless you want to sacrifice client-side
-// compatibility
-var plugins = [
-  'getter-setter', 
-  'cast', 
-  'methods', 
-  'attrs', 
-  'validation', 
-  'required', 
-  'defaults',
-  'discriminators'
-];
-
-exports.plugins = plugins;
+var model = exports.model = require('./lib/model');
 
 exports.bootstrap = function(replace) {
   replace = replace || {};
 
-  var strapped = model;
-  plugins.forEach(function(plugin) {
-    strapped = strapped.use(replace[plugin] || require(plugin));
-  });
+  // Write it all out so that it works with browserify
+  model = model.use(replace['getter-setter'] || require('getter-setter'));
+  model = model.use(replace.cast || require('cast'));
+  model = model.use(replace.methods || require('methods'));
+  model = model.use(replace.attrs || require('attrs'));
+  model = model.use(replace.validation || require('validation'));
+  model = model.use(replace.required || require('required'));
+  model = model.use(replace.defaults || require('defaults'));
+  model = model.use(replace.discriminators || require('discriminators'));
 
-  replace.types && replace.types(strapped);
-  return strapped;
+  (replace.types || require('types'))(model);
+
+  
+  return (exports.model = model);
 };

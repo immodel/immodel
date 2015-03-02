@@ -9,7 +9,7 @@
   "author": "ashaffer (http://github.com/ashaffer)",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^3.1.0",
+    "lodash": "^3.3.1",
     "component-emitter": "^1.2.0",
     "attrs": "git://github.com/immodel/attrs",
     "validation": "git://github.com/immodel/validation",
@@ -19,7 +19,9 @@
     "discriminators": "git://github.com/immodel/discriminators",
     "required": "git://github.com/immodel/required",
     "cast": "git://github.com/immodel/cast",
-    "types": "git://github.com/immodel/types"
+    "types": "git://github.com/immodel/types",
+    "sinon-chai": "^2.7.0",
+    "chai": "^1.10.0"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
