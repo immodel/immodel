@@ -1,6 +1,6 @@
 var sinon = require('sinon');
 var assert = require('assert');
-var immodel = require('..').model;
+var immodel = require('..');
 
 
 describe('immodel', function() {
