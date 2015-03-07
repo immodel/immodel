@@ -10,16 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.3.1",
-    "component-emitter": "^1.2.0",
-    "attrs": "immodel/attrs",
-    "validation": "immodel/validation",
-    "defaults": "immodel/defaults",
-    "getter-setter": "immodel/getter-setter",
-    "methods": "immodel/methods",
-    "discriminators": "immodel/discriminators",
-    "required": "immodel/required",
-    "cast": "immodel/cast",
-    "types": "immodel/types"
+    "component-emitter": "^1.2.0"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
