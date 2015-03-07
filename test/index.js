@@ -34,27 +34,6 @@ describe('immodel', function() {
     });
   });
   
-  describe('.is', function() {
-    it('should work', function() {
-      assert(model.is(model))
-      assert(model.is(model.use()));
-      assert(! model.is({}));
-    });
-  });
-  
-  describe('.type / .lookup', function() {
-    it('should work', function() {
-      model.type('test');
-      assert(model.lookup('test') === model);
-    });
-    
-    it('should allow custom constructors', function() {
-      var spy = sinon.spy();
-      model.type('test', spy);
-      assert(model.lookup('test') === spy);
-    });
-  });
-
   describe('construction', function() {  
     it('should emit an init event', function() {
       var spy = sinon.spy();
