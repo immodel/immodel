@@ -1,9 +1,7 @@
-var chai = require('chai');
-var expect = chai.expect;
 var sinon = require('sinon');
-var immodel = require('../').model;
+var assert = require('assert');
+var immodel = require('..').model;
 
-chai.use(require('sinon-chai'));
 
 describe('immodel', function() {
   var model;
@@ -15,14 +13,14 @@ describe('immodel', function() {
   
   describe('.use', function() {
     it('should return a new reference', function() {
-      expect(model.use()).to.not.equal(model);
+      assert(model.use() !== model);
     });
     
     it('should accept an object as a plugin', function() {
-      model.spy = sinon.spy();
+      var spy = model.spy = sinon.spy();
       model.use({spy: 'test'});
-      expect(model.spy).to.have.been.calledOnce;
-      expect(model.spy).to.have.been.calledWith('test');
+      assert(spy.calledOnce);
+      assert(spy.calledWith('test'));
     });
     
     it('should not pollute the parent', function() {
@@ -31,29 +29,29 @@ describe('immodel', function() {
         model.attrs.test = 2;
       });
       
-      expect(model.attrs.test).to.equal(1);
-      expect(child.attrs.test).to.equal(2);
+      assert(model.attrs.test === 1);
+      assert(child.attrs.test === 2);
     });
   });
   
   describe('.is', function() {
     it('should work', function() {
-      expect(model.is(model)).to.be.true;
-      expect(model.is(model.use())).to.be.true;
-      expect(model.is({})).to.be.false;
+      assert(model.is(model))
+      assert(model.is(model.use()));
+      assert(! model.is({}));
     });
   });
   
   describe('.type / .lookup', function() {
     it('should work', function() {
       model.type('test');
-      expect(model.lookup('test')).to.equal(model);
+      assert(model.lookup('test') === model);
     });
     
     it('should allow custom constructors', function() {
       var spy = sinon.spy();
       model.type('test', spy);
-      expect(model.lookup('test')).to.equal(spy);
+      assert(model.lookup('test') === spy);
     });
   });
 
@@ -63,7 +61,7 @@ describe('immodel', function() {
       model.on('init', spy);
       
       new model();
-      expect(spy).to.have.been.calledOnce;
+      assert(spy.calledOnce);
     });
     
     it('should allow the event handlers to replace the return value', function() {
@@ -73,7 +71,7 @@ describe('immodel', function() {
       
       model.on('init', spy); 
       var doc = new model();
-      expect(doc.test).to.equal('test');
+      assert(doc.test === 'test');
     });
     
     it('should inherit event handlers', function() {
@@ -83,11 +81,11 @@ describe('immodel', function() {
       var model2 = model.use().on('init', spy2);
       
       new model();
-      expect(spy1).to.have.been.calledOnce;
-      expect(spy2).not.to.have.been.called;
+      assert(spy1.calledOnce);
+      assert(! spy2.called);
       new model2();
-      expect(spy1).to.have.been.calledTwice;
-      expect(spy2).to.have.been.calledOnce;
+      assert(spy1.calledTwice);
+      assert(spy2.calledOnce);
     });
   });
 });
