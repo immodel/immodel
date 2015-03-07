@@ -11,17 +11,15 @@
   "dependencies": {
     "lodash": "^3.3.1",
     "component-emitter": "^1.2.0",
-    "attrs": "0.0.1",
-    "validation": "^0.1.1",
-    "defaults": "^0.1.0",
-    "getter-setter": "^0.1.0",
-    "methods": "^0.1.0",
-    "discriminators": "^0.1.1",
-    "required": "^0.1.0",
-    "cast": "^0.1.0",
-    "types": "^0.1.2",
-    "sinon-chai": "^2.7.0",
-    "chai": "^1.10.0"
+    "attrs": "immodel/attrs",
+    "validation": "immodel/validation",
+    "defaults": "immodel/defaults",
+    "getter-setter": "immodel/getter-setter",
+    "methods": "immodel/methods",
+    "discriminators": "immodel/discriminators",
+    "required": "immodel/required",
+    "cast": "immodel/cast",
+    "types": "immodel/types"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
