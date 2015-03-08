@@ -1,6 +1,6 @@
 {
   "name": "immodel",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple, extendable models with support for arbitrary nesting and inheritance",
   "main": "index.js",
   "scripts": {
