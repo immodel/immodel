@@ -25,12 +25,20 @@ describe('immodel', function() {
     
     it('should not pollute the parent', function() {
       model.attrs = {test: 1};
-      var child = model.use(function(model) {
-        model.attrs.test = 2;
+      var child = model.use(function() {
+        this.attrs.test = 2;
       });
       
       assert(model.attrs.test === 1);
       assert(child.attrs.test === 2);
+    });
+    
+    it('should inherit arrays properly', function() {
+      model.validators = ['test'];
+      var tmp = model.use(function() {
+        this.validators.push('test2');
+      });
+      assert.deepEqual(tmp.validators, ['test', 'test2']);
     });
   });
   
