@@ -3,7 +3,7 @@ var isArray = require('isarray');
 var clone = require('clone');
 
 function BaseModel(value) {
-  this.value = value || {};
+  this.value = value;
   this.__isDocument = true;
 }
 
